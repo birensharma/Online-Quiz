@@ -1,0 +1,33 @@
+<?php
+
+session_start();
+
+
+class users{
+	
+	public $host="localhost";
+	public $username="root";
+	public $pass="";
+	public $db_name="quiz_oops";
+	public $conn;
+	
+	
+	
+	public function __construct()
+	{
+		$this->dbconn=new mysqli($this->host,$this->username,$this->pass,$this->db_name);
+		
+		if($this->dbconn->connect_errno)
+		{
+			die('Connect Error: ' . $this->dbconn->connect_errno);
+		}
+		$db=new db;
+		$this->dbconn=$db->conn; 
+	}
+	
+	// this function is used for regsiteration for users
+	public function signup($data)
+	{
+		$match=$this->conn->query($data);
+		
+		?>
